@@ -2,7 +2,7 @@
 
 A one-page portfolio of the apps I've built. Each app opens in a full-screen window that tells its story as you scroll (a pinned phone whose screen follows the chapters), then ends with a small interactive demo running on sample data.
 
-**Live:** https://jonathanzehavi.vercel.app
+**Live:** https://jonathan-zehavi-portfolio.vercel.app
 
 | App | What it does | Demo |
 |---|---|---|
