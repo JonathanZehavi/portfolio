@@ -132,14 +132,14 @@ export function AppSheet({ app, onClosed }: Props) {
             <span className="h-[5px] w-9 rounded-full bg-line" />
           </div>
 
-          <div className="flex shrink-0 items-center gap-4 px-5 pt-2 pb-4 sm:px-8 sm:pt-7">
+          <div className="flex shrink-0 items-center gap-3 border-b border-line px-5 pt-1 pb-3 sm:px-6 sm:py-3">
             <span
-              className="block size-12 shrink-0 overflow-hidden rounded-[22.5%] sm:size-14"
+              className="block size-8 shrink-0 overflow-hidden rounded-[22.5%]"
               style={{ background: app.color }}
             >
               <app.Icon />
             </span>
-            <h2 id={titleId} className="m-0 min-w-0 flex-1 text-[24px] font-semibold tracking-[-0.02em] sm:text-[28px]">
+            <h2 id={titleId} className="m-0 min-w-0 flex-1 text-[17px] font-semibold tracking-[-0.01em]">
               {app.name}
             </h2>
             <button
@@ -154,53 +154,71 @@ export function AppSheet({ app, onClosed }: Props) {
             </button>
           </div>
 
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-6 sm:px-8">
-            <p className="m-0 text-[17px] leading-[1.45] tracking-[-0.01em]">{app.what}</p>
-            <p className="mt-3 mb-0 text-[15px] leading-[1.5] text-text-2">
-              <span className="text-text">The problem: </span>
-              {app.problem}
-            </p>
+          <div className="app-sheet__scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-10 sm:px-10">
+            {/* Opening */}
+            <header className="mx-auto max-w-[760px] pt-6 pb-10 text-center sm:pt-14 sm:pb-16">
+              <span
+                className="mx-auto block size-20 overflow-hidden rounded-[22.5%] shadow-[0_2px_4px_rgb(0_0_0/0.12),0_10px_30px_rgb(0_0_0/0.12)] sm:size-24"
+                style={{ background: app.color }}
+                aria-hidden="true"
+              >
+                <app.Icon />
+              </span>
+              <p className="mt-6 mb-0 text-[clamp(2rem,6vw,3.75rem)] leading-[1.04] font-semibold tracking-[-0.035em] text-balance">
+                {app.headline}
+              </p>
+              <p className="mx-auto mt-5 mb-0 max-w-[58ch] text-[17px] leading-[1.5] text-text-2 sm:text-[19px]">{app.what}</p>
+              <p className="mx-auto mt-3 mb-0 max-w-[58ch] text-[15px] leading-[1.5] text-text-2">
+                <span className="text-text">The problem: </span>
+                {app.problem}
+              </p>
+              {app.outcome && (
+                <dl className="mx-auto mt-8 mb-0 flex max-w-[520px] justify-center gap-10">
+                  {app.outcome.map((o) => (
+                    <div key={o.label}>
+                      <dt className="sr-only">{o.label}</dt>
+                      <dd className="m-0 text-[28px] font-semibold tracking-[-0.02em] tabular-nums sm:text-[34px]">{o.value}</dd>
+                      <dd className="m-0 text-[13px] text-text-2">{o.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              <p className="mt-10 mb-0 text-[13px] text-text-2" aria-hidden="true">
+                Scroll to see how it works ↓
+              </p>
+            </header>
 
-            <section aria-label={`${app.name} demo`} className="mt-6">
-              <div className="mb-2 flex items-center justify-between text-[12px] text-text-2">
-                <span className="font-semibold tracking-[0.06em] uppercase">Try it</span>
-                <span>Simplified demo · sample data</span>
+            {app.Story && (
+              <section aria-label={`How ${app.name} works`} className="mx-auto max-w-[1040px]">
+                <Suspense fallback={<div className="h-[60dvh] animate-pulse rounded-[28px] bg-well" />}>
+                  <app.Story />
+                </Suspense>
+              </section>
+            )}
+
+            <section aria-labelledby={`${app.id}-try`} className="mx-auto mt-16 max-w-[760px] sm:mt-24">
+              <div className="mb-4 text-center">
+                <h3 id={`${app.id}-try`} className="m-0 text-[28px] font-semibold tracking-[-0.02em] sm:text-[34px]">
+                  Try it yourself
+                </h3>
+                <p className="mt-1 mb-0 text-[14px] text-text-2">A simplified version with sample data, running in your browser.</p>
               </div>
               {app.Demo ? (
                 <Suspense fallback={<div className="h-[420px] animate-pulse rounded-2xl bg-well" />}>
                   <app.Demo />
                 </Suspense>
-              ) : (
-                <div className="flex h-40 items-center justify-center rounded-2xl bg-well text-[14px] text-text-2">
-                  Demo coming soon
-                </div>
-              )}
-            </section>
+              ) : null}
 
-            {app.outcome && (
-              <dl className="mt-7 mb-0 grid grid-cols-2 gap-4 border-y border-line py-4">
-                {app.outcome.map((o) => (
-                  <div key={o.label}>
-                    <dt className="sr-only">{o.label}</dt>
-                    <dd className="m-0 text-[26px] font-semibold tracking-[-0.02em] tabular-nums sm:text-[30px]">
-                      {o.value}
-                    </dd>
-                    <dd className="m-0 text-[13px] text-text-2">{o.label}</dd>
-                  </div>
+              {app.note && <p className="mt-6 mb-0 text-[14px] leading-[1.5] text-text-2">{app.note}</p>}
+
+              <ul className="mt-5 mb-0 flex list-none flex-wrap gap-1.5 p-0" aria-label="Technologies">
+                {app.tech.map((t) => (
+                  <li key={t} className="rounded-full border border-line px-2.5 py-1 text-[12px] leading-none text-text-2">
+                    {t}
+                  </li>
                 ))}
-              </dl>
-            )}
-
-            {app.note && <p className="mt-4 mb-0 text-[14px] leading-[1.5] text-text-2">{app.note}</p>}
-
-            <ul className="mt-5 mb-0 flex list-none flex-wrap gap-1.5 p-0" aria-label="Technologies">
-              {app.tech.map((t) => (
-                <li key={t} className="rounded-full border border-line px-2.5 py-1 text-[12px] leading-none text-text-2">
-                  {t}
-                </li>
-              ))}
-            </ul>
-
+              </ul>
+            </section>
           </div>
 
           {(app.url || app.repo) && (

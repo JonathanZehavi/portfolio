@@ -8,6 +8,8 @@ export type AppInfo = {
   /** URL-safe id, also used as the #hash that opens the window. */
   id: string
   name: string
+  /** Short line that opens the app's window. */
+  headline: string
   /** One sentence: what it does. */
   what: string
   /** One sentence: what problem it solves. */
@@ -23,13 +25,15 @@ export type AppInfo = {
   url?: string
   repo?: string
   signInRequired?: boolean
-  /** Loaded on first open, so the page itself stays small. */
+  /** Scroll story and demo, both loaded on first open so the page itself stays small. */
+  Story?: LazyExoticComponent<ComponentType>
   Demo?: LazyExoticComponent<ComponentType>
 }
 
 export const apps: AppInfo[] = [
   {
     id: 'maslool',
+    headline: 'Delivery day, planned in minutes.',
     name: 'Maslool',
     what: 'Takes the order spreadsheet, splits the stops between drivers by van capacity and direction, and gives each driver an ordered route with Waze links and a packing list.',
     problem:
@@ -43,10 +47,12 @@ export const apps: AppInfo[] = [
     Icon: MasloolIcon,
     url: 'https://maslool-app.vercel.app',
     signInRequired: true,
+    Story: lazy(() => import('../apps/maslool/Story')),
     Demo: lazy(() => import('../apps/maslool/Demo')),
   },
   {
     id: 'telem',
+    headline: 'Know what you can spend before you spend it.',
     name: 'Telem',
     what: 'Personal finance in one view: checking balance and upcoming credit card charges together, what you can safely spend, savings for planned purchases, and loan tracking.',
     problem:
@@ -57,10 +63,12 @@ export const apps: AppInfo[] = [
     Icon: TelemIcon,
     url: 'https://telem-app.vercel.app',
     signInRequired: true,
+    Story: lazy(() => import('../apps/telem/Story')),
     Demo: lazy(() => import('../apps/telem/Demo')),
   },
   {
     id: 'mixed-world',
+    headline: 'Your bar, and what it can make tonight.',
     name: 'Mixed World',
     what: 'A personal cocktail library of recipes, bottles, brands, glassware and homemade syrups, with a small community to share recipes.',
     problem:
@@ -69,11 +77,13 @@ export const apps: AppInfo[] = [
     color: '#0B0F14',
     Icon: MixedWorldIcon,
     url: 'https://mixedworld.vercel.app',
+    Story: lazy(() => import('../apps/mixed-world/Story')),
     Demo: lazy(() => import('../apps/mixed-world/Demo')),
     signInRequired: true,
   },
   {
     id: 'kalo',
+    headline: 'A calorie tracker that does the boring part.',
     name: 'Kalo',
     what: 'A calorie and workout tracker that imports steps, active calories and exercise minutes from iPhone Health by itself.',
     problem:
@@ -83,6 +93,7 @@ export const apps: AppInfo[] = [
     Icon: KaloIcon,
     url: 'https://kalo-app-theta.vercel.app',
     signInRequired: true,
+    Story: lazy(() => import('../apps/kalo/Story')),
     Demo: lazy(() => import('../apps/kalo/Demo')),
   },
 ]

@@ -1,6 +1,6 @@
 # Jonathan Zehavi · Portfolio
 
-A one-page portfolio of the apps I've built. Each app opens in a window with a small interactive demo that runs right in the page, on sample data.
+A one-page portfolio of the apps I've built. Each app opens in a full-screen window that tells its story as you scroll (a pinned phone whose screen follows the chapters), then ends with a small interactive demo running on sample data.
 
 **Live:** https://jonathanzehavi.vercel.app
 
@@ -25,15 +25,16 @@ React 19, TypeScript (strict), Vite and Tailwind CSS v4. No backend and no UI li
 ```
 src/
   data/apps.ts        One entry per app: name, copy, icon, colour, links, tech, demo
-  apps/<app>/         Icon.tsx, Demo.tsx and the demo's own logic and styles
+  apps/<app>/         Icon.tsx, Story.tsx (scroll story), Demo.tsx, and their logic and styles
   components/         Hero, About, AppGrid, AppSheet (the window), Footer, Reveal
+  components/story/   ScrollStory (pinned phone + chapters), Phone, CountUp
 scripts/              Renders the Open Graph image and the touch icon
 ```
 
 ### Adding an app
 
-1. Create `src/apps/<id>/Icon.tsx` and `src/apps/<id>/Demo.tsx` (with a default export).
-2. Add an entry to `src/data/apps.ts`, with `Demo: lazy(() => import('../apps/<id>/Demo'))`.
+1. Create `src/apps/<id>/Icon.tsx`, `Story.tsx` and `Demo.tsx` (Story and Demo with a default export). A story is a list of chapters plus one `Screen({ active })` that shows a layer per chapter.
+2. Add an entry to `src/data/apps.ts` with `Story: lazy(() => import('../apps/<id>/Story'))` and `Demo: lazy(() => import('../apps/<id>/Demo'))`.
 
 ## Run locally
 
