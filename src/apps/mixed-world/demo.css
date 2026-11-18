@@ -1,0 +1,30 @@
+/* Mixed World: one committed dark theme, Georgia everywhere, one warm accent. */
+.mixed {
+  --canvas: #242427;
+  --surface: #0c0c0e;
+  --raised: #2f2f34;
+  --line: #38383f;
+  --line-strong: #4e4e57;
+  --ink: #f2efe9;
+  --muted: #a9a6a0;
+  --faint: #7c7a75;
+  --accent: #d18a4e;
+  --ok: #63b07f;
+  --ok-soft: #18291d;
+  --warn: #d6746f;
+  --warn-soft: #2c1a18;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  color-scheme: dark;
+}
+.mixed-card {
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mixed-card {
+    transition: none;
+  }
+}

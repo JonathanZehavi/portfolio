@@ -161,8 +161,24 @@ export function AppSheet({ app, onClosed }: Props) {
               {app.problem}
             </p>
 
+            <section aria-label={`${app.name} demo`} className="mt-6">
+              <div className="mb-2 flex items-center justify-between text-[12px] text-text-2">
+                <span className="font-semibold tracking-[0.06em] uppercase">Try it</span>
+                <span>Simplified demo · sample data</span>
+              </div>
+              {app.Demo ? (
+                <Suspense fallback={<div className="h-[420px] animate-pulse rounded-2xl bg-well" />}>
+                  <app.Demo />
+                </Suspense>
+              ) : (
+                <div className="flex h-40 items-center justify-center rounded-2xl bg-well text-[14px] text-text-2">
+                  Demo coming soon
+                </div>
+              )}
+            </section>
+
             {app.outcome && (
-              <dl className="mt-6 mb-0 grid grid-cols-2 gap-4 border-y border-line py-4">
+              <dl className="mt-7 mb-0 grid grid-cols-2 gap-4 border-y border-line py-4">
                 {app.outcome.map((o) => (
                   <div key={o.label}>
                     <dt className="sr-only">{o.label}</dt>
@@ -185,21 +201,6 @@ export function AppSheet({ app, onClosed }: Props) {
               ))}
             </ul>
 
-            <section aria-label={`${app.name} demo`} className="mt-7">
-              <div className="mb-2 flex items-center justify-between text-[12px] text-text-2">
-                <span className="font-semibold tracking-[0.06em] uppercase">Try it</span>
-                <span>Simplified demo · sample data</span>
-              </div>
-              {app.Demo ? (
-                <Suspense fallback={<div className="h-[420px] animate-pulse rounded-2xl bg-well" />}>
-                  <app.Demo />
-                </Suspense>
-              ) : (
-                <div className="flex h-40 items-center justify-center rounded-2xl bg-well text-[14px] text-text-2">
-                  Demo coming soon
-                </div>
-              )}
-            </section>
           </div>
 
           {(app.url || app.repo) && (

@@ -56,6 +56,8 @@ export const apps: AppInfo[] = [
     color: '#0F6E56',
     Icon: TelemIcon,
     url: 'https://telem-app.vercel.app',
+    signInRequired: true,
+    Demo: lazy(() => import('../apps/telem/Demo')),
   },
   {
     id: 'mixed-world',
@@ -67,6 +69,7 @@ export const apps: AppInfo[] = [
     color: '#0B0F14',
     Icon: MixedWorldIcon,
     url: 'https://mixedworld.vercel.app',
+    Demo: lazy(() => import('../apps/mixed-world/Demo')),
     signInRequired: true,
   },
   {
@@ -79,5 +82,7 @@ export const apps: AppInfo[] = [
     color: '#1C1B18',
     Icon: KaloIcon,
     url: 'https://kalo-app-theta.vercel.app',
+    signInRequired: true,
+    Demo: lazy(() => import('../apps/kalo/Demo')),
   },
 ]

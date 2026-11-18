@@ -96,6 +96,10 @@ html:has(dialog[open]) {
 .app-sheet::backdrop {
   background: transparent;
 }
+.app-sheet__panel:focus-visible {
+  /* The panel takes focus on open so screen readers start at the title; it is not a control. */
+  outline: none;
+}
 .app-sheet__scrim {
   position: fixed;
   inset: 0;

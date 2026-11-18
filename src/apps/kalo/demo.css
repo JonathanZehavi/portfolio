@@ -1,0 +1,57 @@
+/* Kalo: warm paper, near-black ink, one burnt-orange accent, mono for data. */
+.kalo {
+  --bg: #f5f2eb;
+  --surface: #fffdf8;
+  --ink: #1c1b18;
+  --ink-2: #4f4b43;
+  --line: #d9d1c1;
+  --accent: #c8461b;
+  --accent-ink: #ffffff;
+  --accent-soft: #f6dfd3;
+  --good: #24704a;
+  --code: #1c1b18;
+  --code-ink: #f4f0e8;
+  background: var(--bg);
+  color: var(--ink);
+}
+@media (prefers-color-scheme: dark) {
+  .kalo {
+    --bg: #131210;
+    --surface: #1d1b18;
+    --ink: #f4f0e8;
+    --ink-2: #c4bcad;
+    --line: #3d3933;
+    --accent: #ff7a4d;
+    --accent-ink: #1a0d07;
+    --accent-soft: #3d2217;
+    --good: #6fd19a;
+    --code: #0b0a09;
+  }
+}
+.kalo-mono {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+.kalo-bar {
+  transition: height 700ms cubic-bezier(0.2, 0.8, 0.2, 1), y 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.kalo-ring {
+  transition: stroke-dasharray 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.kalo-in {
+  animation: kalo-in 280ms ease both;
+}
+@keyframes kalo-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kalo-bar,
+  .kalo-ring {
+    transition: none;
+  }
+  .kalo-in {
+    animation: none;
+  }
+}
