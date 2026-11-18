@@ -1,32 +1,49 @@
-# React + TypeScript + Vite
+# Jonathan Zehavi · Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A one-page portfolio of the apps I've built. Each app opens in a window with a small interactive demo that runs right in the page, on sample data.
 
-Currently, two official plugins are available:
+**Live:** https://jonathanzehavi.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| App | What it does | Demo |
+|---|---|---|
+| **Maslool** | Plans delivery routes for a family pomegranate-juice business, starting from its order spreadsheet | Split 11 stops between 2 or 3 drivers by direction and van capacity, then order each route (sweep, nearest neighbour and 2-opt) |
+| **Telem** | Personal finance: checking and credit cards together, savings goals, loans | "Safe to spend" for this month, and "Can I afford it?" with instalments |
+| **Mixed World** | A personal cocktail library | Mark bottles on your shelf, then see what you can make |
+| **Kalo** | Calorie and workout tracker fed by an iOS Shortcut | Simulates the Shortcut's POST to the import endpoint and updates the day's numbers |
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React 19, TypeScript (strict), Vite and Tailwind CSS v4. No backend and no UI library.
 
-## Expanding the Oxlint configuration
+- **Fast to load.** Each demo is lazy-loaded the first time its window opens, so the first page load is just the page. On Apple devices the system font is used, so no webfont is downloaded; other devices get Inter.
+- **Accessible.** The window is a native `<dialog>` with a Tab trap. Esc and a click outside close it, and focus goes back to the icon that opened it. It respects `prefers-reduced-motion` and follows the system light/dark setting.
+- **Phone first.** On a phone the window is a bottom sheet you can drag down to close; on desktop it's a centred window.
+- Lighthouse on mobile: 100 in Performance, Accessibility, Best Practices and SEO.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Structure
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+  data/apps.ts        One entry per app: name, copy, icon, colour, links, tech, demo
+  apps/<app>/         Icon.tsx, Demo.tsx and the demo's own logic and styles
+  components/         Hero, About, AppGrid, AppSheet (the window), Footer, Reveal
+scripts/              Renders the Open Graph image and the touch icon
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Adding an app
+
+1. Create `src/apps/<id>/Icon.tsx` and `src/apps/<id>/Demo.tsx` (with a default export).
+2. Add an entry to `src/data/apps.ts`, with `Demo: lazy(() => import('../apps/<id>/Demo'))`.
+
+## Run locally
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # type-check, then build to dist/
+npm run preview    # serve the build
+```
+
+`VITE_SITE_URL` in `.env` sets the absolute URLs in the Open Graph and canonical tags. Change it if the site moves to another domain.
+
+To regenerate `public/og.png` and `public/apple-touch-icon.png`, run `npm run images` (needs Playwright with Chromium).

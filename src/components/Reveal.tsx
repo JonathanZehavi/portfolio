@@ -11,15 +11,12 @@ type Props = {
 /** Fades and lifts its content in the first time it scrolls into view. */
 export function Reveal({ as: Tag = 'div', className = '', children, ...rest }: Props) {
   const ref = useRef<HTMLElement>(null)
-  const [visible, setVisible] = useState(false)
+  // Without IntersectionObserver (very old browsers), just show the content.
+  const [visible, setVisible] = useState(() => typeof IntersectionObserver === 'undefined')
 
   useEffect(() => {
     const el = ref.current
-    if (!el) return
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true)
-      return
-    }
+    if (!el || typeof IntersectionObserver === 'undefined') return
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
