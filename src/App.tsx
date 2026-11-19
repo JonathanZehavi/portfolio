@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { apps, type AppInfo } from './data/apps'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
-import { AppGrid } from './components/AppGrid'
+import { AppCards } from './components/AppCards'
 import { AppSheet } from './components/AppSheet'
 import { Footer } from './components/Footer'
 
@@ -32,11 +32,11 @@ export default function App() {
   }, [])
 
   return (
-    <div className="mx-auto max-w-[980px] px-4 sm:px-8">
+    <div className="mx-auto max-w-[1120px] px-4 sm:px-8">
       <main>
-        <Hero />
+        <Hero apps={apps} onOpen={openApp} />
+        <AppCards apps={apps} onOpen={openApp} />
         <About />
-        <AppGrid apps={apps} onOpen={openApp} />
       </main>
       <Footer />
       <AppSheet app={open} onClosed={onClosed} />

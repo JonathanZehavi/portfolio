@@ -52,13 +52,13 @@ function Pill({ ok, delay = 0 }: { ok: boolean; delay?: number }) {
   )
 }
 
-function Screen({ active }: { active: number }) {
+export function Screen({ active }: { active: number }) {
   // Campari is bought while you watch: it turns green a moment after the shelf appears.
   const campari = active === 0
   return (
     <div className="relative h-full bg-[var(--canvas)] text-[13px] text-[var(--ink)]">
       <div className="absolute top-0 right-0 left-0 z-[5] flex h-11 items-center justify-between bg-[#0b0f14] px-4">
-        <img src="/apps/mixed-world-logo.webp" alt="" className="h-7 w-auto" />
+        <img src="/apps/mixed-world-logo.webp" alt="" width={39} height={28} className="h-7 w-auto" />
         <span className="flex flex-col gap-[3px]">
           <span className="block h-px w-4 bg-[var(--ink)]" />
           <span className="block h-px w-4 bg-[var(--ink)]" />

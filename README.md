@@ -26,7 +26,7 @@ React 19, TypeScript (strict), Vite and Tailwind CSS v4. No backend and no UI li
 src/
   data/apps.ts        One entry per app: name, copy, icon, colour, links, tech, demo
   apps/<app>/         Icon.tsx, Story.tsx (scroll story), Demo.tsx, and their logic and styles
-  components/         Hero, About, AppGrid, AppSheet (the window), Footer, Reveal
+  components/         Hero, Showcase (the self-playing phone in the hero), AppCards, About, AppSheet (the window), Footer, Reveal
   components/story/   ScrollStory (pinned phone + chapters), Phone, CountUp
 scripts/              Renders the Open Graph image and the touch icon
 ```

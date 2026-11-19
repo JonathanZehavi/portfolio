@@ -15,11 +15,11 @@ const rows = [
 
 export function About() {
   return (
-    <Reveal as="section" aria-labelledby="about-title" className="border-t border-line py-14 sm:py-20">
-      <h2 id="about-title" className="text-[13px] font-semibold tracking-[0.06em] text-text-2 uppercase">
-        About
+    <Reveal as="section" aria-labelledby="about-title" className="border-t border-line py-16 sm:py-24">
+      <h2 id="about-title" className="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-[1.05] font-semibold tracking-[-0.03em]">
+        About me
       </h2>
-      <dl className="mt-8 grid gap-7 sm:gap-8">
+      <dl className="mt-10 grid gap-7 sm:gap-8">
         {rows.map((r) => (
           <div key={r.label} className="grid gap-1 sm:grid-cols-[9rem_1fr] sm:gap-8">
             <dt className="text-[15px] text-text-2 sm:pt-[3px]">{r.label}</dt>

@@ -41,6 +41,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
 }
 
@@ -66,6 +67,35 @@ html:has(dialog[open]) {
 ::selection {
   background: var(--text);
   color: var(--bg);
+}
+
+/* ---------- App cards: a soft wash of the app's colour, a small lift on hover ---------- */
+.app-card {
+  transition:
+    transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 350ms ease,
+    border-color 350ms ease;
+}
+.app-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 44px -22px rgb(0 0 0 / 0.28);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+.app-card:active {
+  transform: translateY(-1px) scale(0.995);
+}
+.app-card__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 80% at 100% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 70%);
+  transition: opacity 350ms ease, transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0.85;
+}
+.app-card:hover .app-card__wash {
+  opacity: 1;
+  transform: scale(1.06);
 }
 
 /* ---------- Scroll reveal (only below the fold, so LCP is never hidden) ---------- */
@@ -152,6 +182,18 @@ html:has(dialog[open]) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .app-card,
+  .app-card__wash {
+    transition: none;
+  }
+  .app-card:hover,
+  .app-card:active,
+  .app-card:hover .app-card__wash {
+    transform: none;
+  }
   .reveal,
   .reveal[data-visible='true'] {
     opacity: 1;

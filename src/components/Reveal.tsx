@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from 'react'
 
 type Props = {
   as?: ElementType
   className?: string
   children: ReactNode
   id?: string
+  style?: CSSProperties
   'aria-labelledby'?: string
 }
 

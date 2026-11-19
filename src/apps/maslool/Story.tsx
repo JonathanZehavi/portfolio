@@ -47,7 +47,7 @@ const chapters: Chapter[] = [
   },
 ]
 
-function Screen({ active }: { active: number }) {
+export function Screen({ active }: { active: number }) {
   const depot = px(DEPOT)
   const planned = active >= 2
   return (

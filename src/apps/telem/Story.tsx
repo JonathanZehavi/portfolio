@@ -42,7 +42,7 @@ const chapters: Chapter[] = [
   },
 ]
 
-function Screen({ active }: { active: number }) {
+export function Screen({ active }: { active: number }) {
   return (
     <div className="relative h-full bg-[var(--page)] text-[13px] text-[var(--text)]">
       {/* 0: two sources */}

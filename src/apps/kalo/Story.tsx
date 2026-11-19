@@ -33,7 +33,7 @@ const chapters: Chapter[] = [
   },
 ]
 
-function Screen({ active }: { active: number }) {
+export function Screen({ active }: { active: number }) {
   const r = 70
   const c = 2 * Math.PI * r
   return (

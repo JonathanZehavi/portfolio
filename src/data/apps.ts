@@ -21,6 +21,10 @@ export type AppInfo = {
   tech: string[]
   /** Background of the icon tile. */
   color: string
+  /** Brighter colour from the app, used for the soft wash behind its card (works in light and dark). */
+  accent: string
+  /** The one number on the app's card. */
+  highlight: { value: string; label: string }
   Icon: ComponentType
   url?: string
   repo?: string
@@ -44,6 +48,8 @@ export const apps: AppInfo[] = [
     ],
     tech: ['React', 'TypeScript', 'Supabase', 'Postgres RLS', 'Realtime', 'SheetJS', 'Tailwind'],
     color: '#1F2430',
+    accent: '#B3261E',
+    highlight: { value: '~3 h → min', label: 'planning per delivery day' },
     Icon: MasloolIcon,
     url: 'https://maslool-app.vercel.app',
     signInRequired: true,
@@ -60,6 +66,8 @@ export const apps: AppInfo[] = [
     note: 'Includes Talma, an AI agent that searches for the lowest price of a product. The bank connection is simulated for now.',
     tech: ['React', 'TypeScript', 'Supabase', 'Node.js', 'Gemini API', 'Chart.js', 'Tailwind'],
     color: '#0F6E56',
+    accent: '#F2C14E',
+    highlight: { value: '1 number', label: 'checking and credit cards, together' },
     Icon: TelemIcon,
     url: 'https://telem-app.vercel.app',
     signInRequired: true,
@@ -75,6 +83,8 @@ export const apps: AppInfo[] = [
       'Recipes live in bookmarks and notes, and none of them know which bottles are actually on your shelf.',
     tech: ['React 19', 'TypeScript', 'React Router', 'Supabase', 'Realtime', 'Tailwind'],
     color: '#0B0F14',
+    accent: '#D18A4E',
+    highlight: { value: '130', label: 'bottles preloaded, each with a photo' },
     Icon: MixedWorldIcon,
     url: 'https://mixedworld.vercel.app',
     Story: lazy(() => import('../apps/mixed-world/Story')),
@@ -90,6 +100,8 @@ export const apps: AppInfo[] = [
       'Typing in activity by hand is the step everyone skips. An iOS Shortcut posts it to the app’s endpoint instead.',
     tech: ['React 19', 'TypeScript', 'Vercel Functions', 'Supabase', 'iOS Shortcuts', 'Web Push'],
     color: '#1C1B18',
+    accent: '#E8622F',
+    highlight: { value: '3× a day', label: 'activity syncs from iPhone Health' },
     Icon: KaloIcon,
     url: 'https://kalo-app-theta.vercel.app',
     signInRequired: true,
